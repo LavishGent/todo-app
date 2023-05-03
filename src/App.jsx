@@ -13,9 +13,13 @@ class App extends React.Component {
           description: "just a description for sample purposes",
           status: "PENDING"
         }
-      ]
+      ],
+      selectedTodo: null
     };
     this.addTodo = this.addTodo.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
   }
 
   addTodo(todoObj) {
@@ -26,9 +30,35 @@ class App extends React.Component {
     });
   }
 
-  editTodo() {}
+  toggleEdit(todoItem) {
+    this.setState({
+      selectedTodo: todoItem
+    });
+  }
 
-  deleteTodo() {}
+  editTodo(todoItem) {
+    console.log("todoItem in editTodo", todoItem);
+    const newTodo = JSON.parse(JSON.stringify(this.state.todos)).map((todo) => {
+      if (todo.id === todoItem.id) {
+        return todoItem;
+      }
+      return todo;
+    });
+    return this.setState({
+      todos: newTodo,
+      selectedTodo: null
+    });
+  }
+
+  deleteTodo(todoItem) {
+    const newTodo = JSON.parse(JSON.stringify(this.state.todos)).filter(
+      (todo) => todo.id !== todoItem.id
+    );
+    return this.setState({
+      todos: newTodo,
+      selectedTodo: null
+    });
+  }
 
   render() {
     return (
@@ -40,8 +70,10 @@ class App extends React.Component {
         />
         <TodoContainer
           todos={this.state.todos}
-          handleEdit={this.handleEdit}
-          handleDelete={this.handleDelete}
+          toggleEdit={this.toggleEdit}
+          handleDelete={this.deleteTodo}
+          selectedTodo={this.state.selectedTodo}
+          editTodo={this.editTodo}
         />
       </>
     );

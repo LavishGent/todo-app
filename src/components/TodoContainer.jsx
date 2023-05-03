@@ -10,7 +10,6 @@ export class TodoContainer extends React.Component {
     return (
       <>
         {this.props.todos.map((todo) => {
-          console.log(todo);
           return (
             <TodoDisplay
               key={todo.id}
@@ -18,8 +17,10 @@ export class TodoContainer extends React.Component {
               description={todo.description}
               status={todo.status}
               id={todo.id}
-              handleEdit={this.props.handleEdit}
+              toggleEdit={this.props.toggleEdit}
+              editTodo={this.props.editTodo}
               handleDelete={this.props.handleDelete}
+              selectedTodo={this.props.selectedTodo}
             />
           );
         })}

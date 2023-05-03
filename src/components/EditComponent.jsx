@@ -1,25 +1,15 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 
-export class TodoInput extends React.Component {
+export class EditComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: "",
-      title: "",
-      status: "PENDING",
-      id: uuidv4()
+      description: this.props.selectedTodo.description,
+      title: this.props.selectedTodo.title,
+      status: this.props.selectedTodo.status,
+      id: this.props.selectedTodo.id
     };
   }
-
-  resetState = () => {
-    this.setState({
-      description: "",
-      title: "",
-      statues: "PENDING",
-      id: uuidv4()
-    });
-  };
 
   handleTitleChange(e) {
     this.setState({ title: e.target.value });
@@ -33,7 +23,7 @@ export class TodoInput extends React.Component {
     this.setState({ status: e.target.value });
   }
 
-  handleSave(e) {
+  handleUpdate(e) {
     e.preventDefault();
     const payload = {
       description: this.state.description,
@@ -41,8 +31,7 @@ export class TodoInput extends React.Component {
       status: this.state.status,
       id: this.state.id
     };
-    this.props.handleSaveClick(payload);
-    this.resetState();
+    this.props.editTodo(payload);
   }
 
   render() {
@@ -75,10 +64,10 @@ export class TodoInput extends React.Component {
           <option value="ACTIVE">Active</option>
           <option value="DONE">Done</option>
         </select>
-        <button onClick={(e) => this.handleSave(e)}>Add</button>
+        <button onClick={(e) => this.handleUpdate(e)}>Update</button>
       </form>
     );
   }
 }
 
-export default TodoInput;
+export default EditComponent;
