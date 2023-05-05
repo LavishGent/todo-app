@@ -63,7 +63,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div
+        style={{
+          margin: "10vh auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
+        }}
+      >
         <TodoInput
           todos={this.state.todos}
           todoAmount={this.state.todos.length}
@@ -76,7 +83,7 @@ class App extends React.Component {
           selectedTodo={this.state.selectedTodo}
           editTodo={this.editTodo}
         />
-      </>
+      </div>
     );
   }
 }
