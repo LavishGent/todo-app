@@ -1,6 +1,7 @@
 import React from "react";
 import TodoInput from "./components/TodoInput";
 import TodoContainer from "./components/TodoContainer";
+import { v4 as uuidv4 } from "uuid";
 
 class App extends React.Component {
   constructor() {
@@ -8,7 +9,7 @@ class App extends React.Component {
     this.state = {
       todos: [
         {
-          id: 1,
+          id: uuidv4(),
           title: "First Todo Item",
           description: "just a description for sample purposes",
           status: "PENDING"

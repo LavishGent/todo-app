@@ -9,10 +9,10 @@ export class TodoContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.todos.map((todo) => {
+        {this.props.todos.map((todo, i) => {
           return (
             <TodoDisplay
-              key={todo.id}
+              key={i}
               title={todo.title}
               description={todo.description}
               status={todo.status}
