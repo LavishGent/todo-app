@@ -8,7 +8,14 @@ export class TodoContainer extends React.Component {
 
   render() {
     return (
-      <>
+      <section
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          width: "40vw"
+        }}
+      >
         {this.props.todos.map((todo, i) => {
           return (
             <TodoDisplay
@@ -24,7 +31,7 @@ export class TodoContainer extends React.Component {
             />
           );
         })}
-      </>
+      </section>
     );
   }
 }

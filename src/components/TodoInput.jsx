@@ -49,9 +49,9 @@ export class TodoInput extends React.Component {
 
   render() {
     return (
-      <form>
-        <section>
-          <div>
+      <form id="input-form">
+        <section id="form-section">
+          <div className="form-section">
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -61,7 +61,7 @@ export class TodoInput extends React.Component {
               onChange={(e) => this.handleTitleChange(e)}
             />
           </div>
-          <div>
+          <div className="form-section">
             <label htmlFor="description">Description</label>
             <input
               type="text"
@@ -71,7 +71,7 @@ export class TodoInput extends React.Component {
               onChange={(e) => this.handleDescriptionChange(e)}
             />
           </div>
-          <div>
+          <div className="form-section">
             <label htmlFor="status">Status</label>
             <select
               name="status"
